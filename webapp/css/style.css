@@ -1,0 +1,176 @@
+/* Enter your custom styles here */
+/* Enter your custom styles here */
+.indnt{
+    margin-left: 3px;
+}
+.hdrSpc{
+    margin-top: 140px;
+}
+.lblParTitle{
+    margin-left: 25px;
+    margin-right: 4px;
+    margin-top: 7.5px;
+    font-size: 1.5rem;
+    width: 135px;
+    font-weight: bolder;
+}
+.lblPar{
+    margin-left: 25px;
+    margin-right: 4px;
+    margin-top: 7.5px;
+    font-size: 0.975rem;
+    width: 135px;
+}
+.lblPar1{
+    margin-left: 4px;
+    margin-right: 4px;
+    margin-top: 7.5px;
+    font-size: 0.975rem;
+    width: 50px;
+}
+.lblPar2{
+    margin-left: 4px;
+    margin-right: 4px;
+    margin-top: 7.5px;
+    font-size: 0.975rem;
+    width: 40px;
+}
+.lblPar3{
+    margin-left: px;
+    margin-right: 4px;
+    margin-top: 7.5px;
+    font-size: 0.975rem;
+    width: 60px;
+}
+.btnSubm{
+    margin-left: 45px ;
+    margin-top: 15px;
+}
+.btnSubm1{
+    margin-left: 45px ;
+    margin-top: 15px;
+    font-size: 2rem !important;
+}
+.comboLabel{
+    
+    margin-top: 50px !important;
+    margin-bottom: 50px !important;
+    color: #000000;
+    
+    
+}
+.LabelVal{
+    margin-left: 1px;
+    margin-right: 4px;
+    
+    font-size: 0.975rem;
+    width: 75px;
+    color: #000000;
+    
+}
+
+.titleM{
+    font-size: 0.975rem;
+    margin-left: 40px;
+    margin-top: 2px;
+}
+.titleMr{
+    text-align: right;
+    font-size: 0.975rem;
+    margin-right: 40px;
+    margin-top: 2px;
+    
+}
+.titleDWR{
+    font-size: 0.995rem;
+    margin-top: 2px;
+}
+.titleM2{
+    font-size: 0.975rem;
+    margin-left: 2px;
+    
+}
+.titleMr2{
+    text-align: right;
+    font-size: 0.975rem;
+    margin-right: 2px;
+    
+    
+}
+.titleDWR2{
+    font-size: 0.995rem;
+    
+}
+
+
+.titleMNC{
+    font-size: 1.5rem;
+    margin-top: 10px;
+    margin-right: 60px;
+    
+}
+.titledate{
+    font-size: 0.975rem;
+    margin-top: 7px;
+    margin-bottom: 7px;
+}
+
+.panel{
+    background-color: rgb(42, 192, 252);
+    border-bottom: 2px rgba(237, 255, 135, 0.849) solid;
+}
+
+.panel2{
+    background-color: rgb(42, 192, 252);
+    margin-bottom: -.1em;
+}
+.panel3{
+    background-color: rgb(161, 242, 245);
+    
+}
+.TblHdr bdi{
+    font-size: 1.5rem;
+    font-weight: bolder;
+    text-decoration-line: underline;
+    
+    
+}
+.Separator{
+    border-bottom: 2px rgb(161, 161, 161) solid;
+    margin-top: 10px; 
+}
+.blue{
+    background-color:  rgb(204, 250, 252);
+    font-weight: bolder !important;
+}
+.cyan{
+    background-color: rgba(247, 229, 232, 0.897);
+    font-weight: bolder  !important;
+    text-underline-position: below !important;
+}
+.columnStyle1 th{
+  background-color: rgb(161, 242, 245);
+  
+  
+}
+.underline{
+    text-decoration: underline !important;
+}
+.underlineHdr bdi{
+    
+    font-size: 1rem;
+}
+.Orcell td[bdi] {
+    text-align: left;
+    color: brown;
+}
+.tblDws td{
+    text-align: left;
+}
+.myTable td{
+  text-align: right;
+  color: #328C14;
+}
+.right{
+    text-align: right;
+}

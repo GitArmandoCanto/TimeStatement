@@ -1,0 +1,125 @@
+{
+  "_version": "1.32.0",
+  "sap.app": {
+    "id": "nmsp.timest",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "dataSources": {
+      "mainService": {
+        "uri": "/sap/opu/odata/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "localUri": "localService/metadata.xml",
+          "odataVersion": "4.0"
+        }
+      },
+      "dsData":{
+        "uri": "model/mdlMain.json",
+        "type": "JSON"
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.102.1",
+      "libs": {
+        "sap.ui.core": {}
+      }
+    },
+    
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "nmsp.timest.i18n.i18n"
+        }
+      },
+      "data":{
+        "type": "sap.ui.model.json.JSONModel",
+        "dataSource": "dsData"
+
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "synchronizationMode": "None",
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true,
+          "groupId": "$direct"
+        }
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "async": true,
+        "viewPath": "nmsp.timest.view",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "clearControlAggregation": false
+        
+      },
+      "routes": [
+        {
+          "name": "RoutetimeStatement",
+          "pattern": "RoutetimeStatement",
+          "target": [
+            "TargettimeStatement"
+          ]
+        }
+      ],
+      "targets": {
+        "TargettimeStatement": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "timeStatement",
+          "viewName": "timeStatement"
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "nmsp.timest.view.timeStatement",
+      "type": "XML",
+      "async": true,
+      "id": "timeStatement"
+    }
+  }
+}

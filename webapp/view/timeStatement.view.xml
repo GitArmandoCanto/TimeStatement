@@ -1,0 +1,727 @@
+<mvc:View
+    controllerName="nmsp.timest.controller.timeStatement"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:uxap="sap.uxap" xmlns:calendar="sap.ui.unified.calendar" 
+    xmlns:core="sap.ui.core"  xmlns:lay="sap.ui.layout" 
+    xmlns:css="sap.ui.core.CSSSize" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" 
+    >
+
+    <Shell id="shell">
+        <App id="app" autoFocus="false">
+        
+            <pages>
+            
+            <Page id="page" title="{i18n>title}" showHeader="false" enableScrolling="true">
+           
+<!--Region Cabecera-->  
+                
+            	<uxap:ObjectPageLayout id="ObjectPageLayout1" showTitleInHeaderContent="true" upperCaseAnchorBar="false">
+		            <uxap:headerTitle >
+                        	<uxap:ObjectPageDynamicHeaderTitle id="qDynPageHdrTitle1">
+                            	<uxap:expandedHeading >
+                                </uxap:expandedHeading>
+                                <uxap:snappedHeading >
+					            </uxap:snappedHeading>
+                            </uxap:ObjectPageDynamicHeaderTitle>
+                    </uxap:headerTitle>
+                    
+                    
+                <uxap:headerContent >
+                <ScrollContainer id="sc"
+		                height="100%"
+		                width="100%"
+		                vertical="true"
+                        horizontal="true"
+                        
+                        > 
+                    
+                    <Toolbar id="toolbar" height="155px" width="1140px" class="indnt" enabled="true">
+                    <lay:VerticalLayout id="idvl">
+                    <FlexBox id="FlxBxSeparator">
+                    <Toolbar id="Separator" width="1140px" height="1px" class="Separator"/>
+                    
+                    </FlexBox>
+                    <FlexBox id="FlxBxSelection">
+                        <Label id="lblTitlespace" text="" width="25px"/>
+                        <Label id="lblTitlePar" text="SELECTION" class="lblParTitle"/>
+                    </FlexBox>
+                    <FlexBox id="FlxBxPar" >
+                        <Label id="lblPernrspace" text="" width="25px"/>
+                        <Label id="lblPernr" text="Personnel Number:" class="lblPar"/>
+                        <Input id="ipt" ariaLabelledBy="lblPernr" width="150px" value="{/ValHdrPernr}" enabled="false"/>
+                        <Label id="lblMonth" text="Month:" class="lblPar1" />
+                        <Input id="PrmMonth" ariaLabelledBy="text1" width="60px" value="{/ValMonth}" type="Text" tooltip="{i18n>entElv}" 
+                        textAlign="Left" class="lblPar2"
+                        app:name="PrmMonth" 
+                        app:val="ValMonth" 
+                        app:digitsallowed="2" 
+                        app:decAllwd="" 
+                        app:error="'Month'"
+                        liveChange="OnLiveChgEvt"  
+                        enabled="true"
+                        />
+                        <Label id="lblYear" text="Year:" class="lblPar2"/>
+
+                        <Input id="PrmYear" ariaLabelledBy="text1" width="60px" value="{/ValYear}" class="lblPar2" type="Text"
+                        app:name="PrmYear" 
+                        app:val="ValYear" 
+                        app:digitsallowed="4" 
+                        app:decAllwd="" 
+                        app:error="'Year'"
+                        liveChange="OnLiveChgEvt" textAlign="Left" enabled="true"/>
+                        
+                        <Label id="lblend" text="" class="lblPar2" width="430px"/>
+                    </FlexBox>
+                    <Toolbar id="Separator2" width="1215px" height="1px" class="Separator"/>
+                    <FlexBox id="FlxBxSubmitBtn">
+                        <Button id="btn" text="Submit" icon="sap-icon://accept" type="Emphasized" class="btnSubm" press="OnSubmit" enabled="true" width="120px" tooltip="Submit Payroll Period"/>
+                        <Button id='btnPrnt' text="Print" press="onPrint" type="Emphasized" class="btnSubm1" icon="sap-icon://print" width="120px" tooltip="Print Time Statement"></Button>
+                    </FlexBox>
+                    <Toolbar id="Separator3" width="1215px" height="1px" class="Separator"/>
+                    </lay:VerticalLayout>
+	                </Toolbar>
+                 </ScrollContainer>
+                </uxap:headerContent>
+
+                    <uxap:sections >
+                    <uxap:ObjectPageSection id="PageSect">
+                     <uxap:ObjectPageSubSection id="PageSubsct">
+                      <ScrollContainer id="sc1"
+		                height="100%"
+		                width="100%"
+		                vertical="true"
+                        horizontal="true">
+                <!--<content >-->
+  
+        <!--  State of California   -->      
+        
+                    <!--<Label id="LblParamSpace" text="" class="hdrSpc" width="25px"></Label>-->
+                    <!-- Sección de cabecera  -->
+                <FlexBox id="FlxBxFstRow" >   <!-- Flexbox tipo de contenedor horizontal, los objetos se alinean horizontalmente  -->
+    <!-- State of California  -->
+                    <Label id="lbl_hdstate" text="{i18n>lbl_hdstate}" class="titleM" width="100%">
+                        <layoutData><!-- growfactor 1 todos los objetos dentro del contenedor se dividen en espacios iguales  -->
+                            <FlexItemData id="flxitdata0" growFactor="1"/>
+                        </layoutData>
+                    </Label>
+
+    <!-- lbl_hddept HUMAN RESOURCES   -->
+                    <Label id="lbl_hddept" text="{i18n>lbl_hddept}" class="titleDWR" width="100%" textAlign="Center">
+                        <layoutData>
+                            <FlexItemData id="flxitdata1" growFactor="1"/>
+                        </layoutData>
+                    </Label>
+
+    <!-- lbl_hdresage California Natural -->
+                    <Label id="lbl_hdresage" text="{i18n>lbl_hdresage}" class="titleMr" width="100%" textAlign="End">
+                     
+                        <layoutData>
+                            <FlexItemData id="flxitdata6" growFactor="1"/>
+                        </layoutData>
+                    </Label>
+
+                    <Label id="lbl_hdresagesp" text="" width="44px" textAlign="End"/>
+
+                </FlexBox> 
+    <!--2nd Row-->
+                <FlexBox id="FlxBx2ndRow">
+                    <Label id="lbl_void" text="" class="titleM2" width="100%">
+                        <layoutData><!-- growfactor 1 todos los objetos dentro del contenedor se dividen en espacios iguales  -->
+                            <FlexItemData id="flxitDt" growFactor="1"/>
+                        </layoutData>
+                    </Label>
+    <!-- lbl_hddept -->
+                    
+                    <Label id="lbl_hdflddiv" text="{i18n>lbl_hdflddiv}" class="titleDWR2" width="500px" textAlign="Center">
+                        <layoutData>
+                            <FlexItemData id="flxitdata2" growFactor="1" maxHeight="100%" maxWidth="100%" minHeight="0%" minWidth="0%" baseSize="10%"/>
+                        </layoutData>
+                    </Label>
+
+                    <Label id="lbl_hdfResAg" text="{i18n>lbl_hdfResAg}" class="titleMr2" width="100%" textAlign="End">
+                        <layoutData>
+                            <FlexItemData id="flxitdata5" growFactor="1" maxHeight="100%" maxWidth="100%" minHeight="0%" minWidth="0%" baseSize="10%"/>
+                        </layoutData>
+                    </Label>
+                     <Label id="lbl_hdr2ndRowEnd" text="" width="40px" textAlign="End"/>
+                </FlexBox>
+
+
+    <!-- 3rd Row-->
+                <FlexBox id="FlxBx3rdRow">
+                 <!-- lbl_hdmidcond TIME STATEMENT  -->
+                    <Label id="lbl_hdmidcond" text="{i18n>lbl_hdmidcond}" class="titleMNC" width="100%" design="Bold" textAlign="Center" vAlign="Bottom">
+                        <layoutData>
+                            <FlexItemData id="flxitdata3" growFactor="1"/>
+                        </layoutData>
+                    </Label>
+                    <Label id="lbl_hdr3rdRowEnd" text="" width="60px" textAlign="End"/>
+                </FlexBox>
+
+                  
+                    <!-- lbl_hddate se obtiene del sistema, controller funcion oninit  -->
+                    <FlexBox id="FlxBxDate">
+                    <Label width="100%" id="lbl_hddate" textAlign="Center" vAlign="Bottom" class="titledate" text="{/ValDate}" >
+                    <layoutData>
+                        <FlexItemData id="flxitdata4" growFactor="1"/>
+                    </layoutData>
+                    </Label>
+                    <Label id="lbl_hdr4thRowEnd" text="" width="60px" textAlign="End"/>
+                    </FlexBox>
+        <!-- Termina sección de cabecera -->
+ <!--#endregion  -->
+<!--EndRegion Cabecera--> 
+		            
+                
+<!--Region Personal info-->
+
+    <!-- Payroll Period-->
+                     
+                     <Label id="LblPayRollspace" text="" class="" width="25px"></Label>
+                <FlexBox id="FlxBxPayRoll">
+                    <Label id="LblPayRollInIdt" text="" class="" width="25px"></Label>
+                    <Toolbar id="PnlPrnrInfo"  class="panel" width="1140px">
+                        <Label id="LblPayRoll" text="Payroll Period:" class="comboLabel" design="Bold"></Label>
+                        <Label id="LblPayRollMonth" text="{/ValPrMonth}" class="LabelVal"></Label>
+                        <Label id="LblPayRollYear" text="{/ValPrYear}" class="LabelVal"></Label>
+                    </Toolbar>
+                    <Label id="LblPayRollEndIdt" text="" class="" width="25px"></Label>
+                </FlexBox>
+    <!-- End Payroll Period-->
+
+    <!-- End Personnel no-->
+                <FlexBox id="FlxBxPrnrInfo">
+                    <Label id="LblPrnrInfoInIdt" text="" class="" width="25px"></Label>
+                    <Toolbar id="PnlPayroll"  class="panel2" width="1140px">
+                        <Label id="LblPrnrInfoQstions" text="{i18n>LblPrnrInfoQstions}" design="Bold" class="comboLabel" width="700px"></Label>
+                        <Label id="LblPrnrInfoPernr" text="{i18n>LblPrnrInfoPernr}" class="comboLabel" width="110px"></Label>
+                        <Label id="LblValPernr" text="{/ValHdrPernr}" class="comboLabel"></Label>
+                    </Toolbar>
+                    <Label id="LblPrnrEndIdt" text="" class="" width="25px"></Label>
+                </FlexBox>
+    <!-- Personnel no-->
+
+    <!-- Employee group-->
+                <FlexBox id="FlxBxEmplyGrp">
+                    <Label id="LblEmplyGrpInIdt" text="" class="" width="25px"></Label>
+                    <Toolbar id="PnlPayroll2"  class="panel2" width="1140px">
+                    
+                        <Label id="LblEmplyGrpSpace" text="" design="Bold" class="comboLabel" width="700px"></Label>
+                        <Label id="LblEmplyGrpTxt" text="{i18n>LblEmplyGrpTxt}" class="comboLabel" width="110px"></Label>
+                        <Label id="LblValEmplyGrp" text="{/ValHdrEmpGrp}" class="comboLabel"></Label>
+                    </Toolbar>
+                    <Label id="LblEmplyGrpEndIdt" text="" class="" width="25px"></Label>
+                </FlexBox>
+        <!-- End Employee group-->
+
+    <!-- Empl. subgroup-->
+                <FlexBox id="FlxBxEmplySubGrp">
+                    <Label id="LblEmplySGrpInIdt" text="" class="" width="25px"></Label>
+                    <Toolbar id="PnlPayroll3"  class="panel2" width="1140px">
+                        <Label id="LblEmplySGrpSpace" text="" design="Bold" class="comboLabel" width="700px"></Label>
+                        <Label id="LblEmplySGrpTxt" text="{i18n>LblEmplySGrpTxt}" class="comboLabel" width="110px"></Label>
+                        <Label id="LblValEmplySGrp" text="{/ValHdrEmpSgrp}" class="comboLabel"></Label>
+                    </Toolbar>
+                    <Label id="LblEmplySGrpEndIdt" text="" class="" width="25px"></Label>
+                </FlexBox>
+    <!-- End Empl. subgroup-->
+
+    <!-- Personnel area-->
+                <FlexBox id="FlxBxPrnrArea">
+                    <Label id="LblPersAreaInIdt" text="" class="" width="25px"></Label>
+                    <Toolbar id="PnlPayroll4"  class="panel2" width="1140px">
+                        <Label id="LblPersAreaName" text="{/ValHdrName}" design="Bold" class="comboLabel" width="700px"></Label>
+                        <Label id="LblPersAreaTxt" text="{i18n>LblPersArea}" class="comboLabel" width="110px"></Label>   
+                        <Label id="LblValPersArea" text="{/ValHdrPerArea}" class="comboLabel"></Label> 
+                    </Toolbar>
+                    <Label id="LblPersAreaEndIdt" text="" class="" width="25px"></Label>
+                </FlexBox>
+    <!-- End Personnel area-->
+
+    <!-- Company code-->
+                <FlexBox id="FlxBxCompCode">
+                    <Label id="LblCompCodeInIdt" text="" class="" width="25px"></Label>
+                    <Toolbar id="PnlPayroll5"  class="panel2" width="1140px">
+                        <Label id="LblCompCodeSpace" text="" design="Bold" class="comboLabel" width="700px"></Label>
+                        <Label id="LblCompCodeTxt" text="{i18n>LblCompCode}" class="comboLabel" width="110px"></Label>
+                        <Label id="LblValCompCode" text="{/ValHdrCompcode}" class="comboLabel"></Label>
+                    </Toolbar>
+                    <Label id="LblCompCodeEndIdt" text="" class="" width="25px"></Label>
+                </FlexBox>
+    <!-- End Company code-->
+
+    <!-- Cost center-->
+                <FlexBox id="FlxBxCostCntr">
+                    <Label id="LblCostCntrInIdt" text="" class="" width="25px"></Label>
+                    <Toolbar id="PnlPayroll6"  class="panel2" width="1140px">
+                        <Label id="LblCostCntrSpace" text="" design="Bold" class="comboLabel" width="700px"></Label>
+                        <Label id="LblCostCntrTxt" text="{i18n>LblCostCntr}" class="comboLabel" width="110px"></Label>
+                        <Label id="LblValCostCntr" text="{/ValHdrCostCntr}" class="comboLabel"></Label>
+                    </Toolbar>
+                    <Label id="LblCostCntrEndIdt" text="" class="" width="25px"></Label>
+                </FlexBox>
+    <!-- End Cost center-->
+
+    <!-- WS rule-->
+                <FlexBox id="FlxBxWsRule">
+                    <Label id="LblWsRuleInIdt" text="" class="" width="25px"></Label>
+                    <Toolbar id="PnlPayroll7"  class="panel2" width="1140px">
+                        <Label id="LblWsRule" text="" design="Bold" class="comboLabel" width="700px"></Label>
+                        <Label id="LblWsRuleTxt" text="{i18n>LblWsRule}" class="comboLabel" width="110px"></Label>
+                        <Label id="LblValWsRuleTxt" text="{/ValHdrWsRule}" class="comboLabel"></Label>
+                    </Toolbar>
+                    <Label id="LblWsRuleEndIdt" text="" class="" width="25px"></Label>
+                </FlexBox>
+    <!-- End WS rule-->
+<!--EndRegion Personal info-->
+
+<!-- Individual Results Table -->  
+    <!-- Title  -->  
+
+                <FlexBox id="FlxBxIndRes">
+                    <Label id="LblIndResInIdt" text="" class="" width="25px"></Label>
+                    <Toolbar id="PnlIndRes"  class="panel3" width="1140px">
+                        <Label id="LblIndResTxt" text="{i18n>LblIndRes}" class="TblHdr" width="1140px" textAlign="Center" />
+                    </Toolbar>
+                    <Label id="LblIndResEndIdt" text="" class="" width="25px"></Label>
+                </FlexBox>
+    <!-- Title  --> 
+
+                <FlexBox id="flxIndresTable">
+                    <Label id="lblIndResIniIdnt" width="25px"/>
+                    <Table id="tblIndRes" width="1140px" items="{/ValTblIndRes}" backgroundDesign="Solid" 
+                        fixedLayout="false"  growing="true" growingThreshold="100" alternateRowColors="false"  class="columnStyle1" showNoData="false" >
+    <!-- Individual Results Columns -->  
+        <!-- Day Column --> 
+                        <columns>
+                            <Column id="IndResDay" width="60px" hAlign="Left">
+                                <header>
+                                    <Label  design="Bold" text="Day" id="TblTrainHistColId" class="columnStyle1"/>
+                                </header>
+                            </Column>
+        <!-- End Day Column --> 
+        <!-- Abs/Att Column --> 
+                            <Column id="IndResAbsAtt" width="300px" hAlign="Left" >
+                                <header>
+                                    <Label  design="Bold" text="Abs/Att" id="TblTrainHistColCourse" class="Orcell"/>
+                                </header>
+                            </Column>
+        <!-- End Abs/Att Column --> 
+        <!-- Attend Column --> 
+                            <Column id="IndResAttend" width="110px" hAlign="Right">
+                                <header>
+                                    <Label class="columnStyle1" design="Bold" text="Attend" id="TblTrainHistColCateg"/>
+                                </header>
+                            </Column>
+        <!-- End Attend Column --> 
+        <!-- Abs Column --> 
+                            <Column id="IndResABS" width="110px" hAlign="Right">
+                                <header>
+                                    <Label class="columnStyle1" design="Bold" text="ABS" id="TblTrainHistColBeginDt"/>
+                                </header>
+                            </Column>
+        <!-- End Abs Column --> 
+        <!-- HFP Column --> 
+                            <Column id="IndResHFP" width="110px" hAlign="Right">
+                                <header>
+                                    <Label class="columnStyle1" design="Bold" text="HFP" id="TblTrainHistColEndDt"/>
+                                </header>
+                            </Column>
+        <!-- End HFP Column --> 
+        <!-- OT ( 1.5 ) Column --> 
+                            <Column id="IndResOT1.5" width="125px" hAlign="Right">
+                                <header>
+                                    <Label class="columnStyle1" design="Bold" text="OT ( 1.5 )" id="TblTrainHistColDays" />
+                                </header>
+                            </Column>
+        <!-- End OT ( 1.5 ) Column --> 
+        <!-- OT ( 1.0 ) Column --> 
+                            <Column id="IndResOT1.0" width="125px" hAlign="Right">
+                                <header>
+                                    <Label class="columnStyle1" design="Bold" text="OT ( 1.0 )" id="TblTrainHistColHours" />
+                                </header>
+                            </Column>
+        <!-- End OT ( 1.0 ) Column --> 
+        <!-- DWS Column --> 
+                            <Column id="IndResDWS" width="120px" hAlign="End">
+                                <header>
+                                    <Label class="columnStyle1" design="Bold" text="DWS" id="TblTrainHistColDWS" />
+                                </header>
+                            </Column>
+                             <Column id="IndResDWSGap" width="80px" >
+                                <header>
+                                    <Label class="columnStyle1" design="Bold" text="" id="TblTrainHistColDWSGap" textAlign="End"/>
+                                </header>
+                            </Column>
+        <!-- End DWS Column --> 
+                        </columns>
+    <!-- End Individual Results Columns -->
+
+    <!-- Training History Items -->  
+                    <items>
+                        <ColumnListItem id="TblTrainHistIdItm">
+                            <cells>
+                                <Text id="TrainHistDay" text="{Reday}" renderWhitespace="true" class="Orcell" /> 
+                            </cells>
+                            
+                            
+                            <cells>
+                                <Text id="TrainHistAbssAtt" text="{Ztext}" renderWhitespace="true" /> 
+                            </cells>
+                            <cells>
+                                <Text id="TrainHistAttend" text="{Attend}" renderWhitespace="true" class="Orcell" textAlign="End"/> 
+                            </cells>
+                            <cells>
+                                <Text id="TrainHistAbs" text="{Abs}" renderWhitespace="true" class="Orcell"/> 
+                            </cells>
+                            <cells>
+                                <Text id="TrainHistHfp" text="{Hfp}" renderWhitespace="true" class="Orcell"/> 
+                            </cells>
+                            <cells>
+                                <Text id="TrainHistOt15" text="{Ot15}" class="Orcell" /> 
+                            </cells>
+                            <cells>
+                                <Text id="TrainHistTOt10" text="{Ot10}" class="Orcell" /> 
+                            </cells>
+                            
+                            <cells>
+                                <Label id="TrainHistDws" text="{Dws}" textAlign="Center"/> 
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+    <!-- Training History Items -->  
+                            
+                        </Table>
+
+                        <Label id="lblIndResFinalIdnt" class="TH_TblIndFin" text="">
+                            <layoutData>
+						        <FlexItemData id="flxItmIndResFinalIdnt" growFactor=".5" />
+					        </layoutData>
+                        </Label>
+    
+                    </FlexBox>
+<!-- Individual Results Table -->  
+
+<!--Total OverView Table-->
+                         <Label id="lblTotOvrvwspace" class="" text=""/>
+                    <!-- WS rule-->
+                <FlexBox id="FlxBxTotOvrvw">
+                    <Label id="LblTotOvrvwInIdt" text="" class="" width="25px"></Label>
+                    <Toolbar id="PnlTotOvrvw"  class="panel3" width="1140px">
+                        
+                        <Label id="LblTotOvrvwTxt" text="{i18n>LblTotOvrvw}" class="TblHdr" width="1140px" textAlign="Center" >
+                        
+                        </Label>
+                    </Toolbar>
+                    <Label id="LblITotOvrvwEndIdt" text="" class="" width="25px"></Label>
+                </FlexBox>
+
+
+
+                     <FlexBox id="flxTotOvrvwTable">
+                    
+                        
+                        <Label id="lblTotOvrvIniIdnt" width="25px"/>
+                        
+                        <Table id="tblTotOvrv" width="1140px" items="{/ValTblTotOvrvw}" backgroundDesign="Solid" 
+                               fixedLayout="false"  growing="true" growingThreshold="100" alternateRowColors="false" class="columnStyle1" showNoData="false">
+    <!-- Training History Columns -->  
+                            <columns>
+                                <Column id="TotOvrvDay" width="330px" class="myTable">
+                                    <header>
+                                        <Label  design="Bold" text="Type" id="TTotOvrvColId" class="underlineHdr" textAlign="Begin"/>
+                                    </header>
+                                </Column>
+                                <Column id="TotOvrvAbsAtt" width="150px" hAlign="End">
+                                    <header>
+                                        <Label class="myTable" design="Bold" text="Hours" id="TotOvrvColCourse" textAlign="End" />
+                                    </header>
+                                </Column>
+                                <Column id="TotOvrvGap" width="100px" hAlign="End">
+                                    <header>
+                                        <Label class="myTable" design="Bold" text="" id="TotOvrvColGap" textAlign="End" />
+                                    </header>
+                                </Column>
+                                <Column id="TotOvrv" width="330px" >
+                                    <header>
+                                        <Label class="underlineHdr" design="Bold" text="Type" id="TotOvrvColCateg" textAlign="Begin"/>
+                                    </header>
+                                </Column>
+                                <Column id="TotOvrvABS" width="150px" hAlign="End">
+                                    <header>
+                                        <Label class="underlineHdr" design="Bold" text="Hours" id="TotOvrvColBeginDt" textAlign="End"/>
+                                    </header>
+                                </Column>
+                                <Column id="TotOvrvGap1" width="80px" hAlign="End">
+                                    <header>
+                                        <Label class="underlineHdr" design="Bold" text="" id="TotOvrvColGap1" textAlign="End"/>
+                                    </header>
+                                </Column>
+                               
+                            </columns>
+    <!-- Training History Columns -->
+
+    <!-- Training History Items -->  
+                            <items>
+                                <ColumnListItem id="TotOvrvIdItm" >
+                                    <cells>
+                                        <Text id="TotOvrvType" text="{Ztext1}" renderWhitespace="true" class="Orcell" /> 
+                                    </cells>
+                                    <cells>
+                                        <Text id="TotOvrvHours" text="{Anzhl1}" renderWhitespace="true" class="myTable" textAlign="End"/> 
+                                    </cells>
+                                     <cells>
+                                        <Text id="TotOvrvGapCell" text="" renderWhitespace="true" class="myTable" textAlign="End"/> 
+                                    </cells>
+                                    <cells>
+                                        <Text id="TotOvrvType1" text="{Ztext2}" renderWhitespace="true" class="Orcell"  /> 
+                                    </cells>
+                                    <cells>
+                                        <Text id="TotOvrvHours1" text="{Anzhl2}" renderWhitespace="true" class="Orcell" /> 
+                                    </cells>
+                                    
+                                </ColumnListItem>
+                            </items>
+    <!-- Training History Items -->  
+                            
+                        </Table>
+
+                        <Label id="lblTotOvrvFinalIdnt" class="TH_TblIndFin" text="">
+                            <layoutData>
+						        <FlexItemData id="flxItmTotOvrvFinalIdnt" growFactor=".5" />
+					        </layoutData>
+                        </Label>
+<!--Total OverView Table-->
+
+<!-- Time Transfer Table -->  
+                    </FlexBox>
+                         <Label id="lblTimeTransfspace" class="" text=""/>
+                    <!-- WS rule-->
+                <FlexBox id="FlxBxTimeTransf">
+                    <Label id="LblTimeTransfInIdt" text="" class="" width="25px"></Label>
+                    <Toolbar id="PnlTimeTransf"  class="panel3" width="1140px">
+                        
+                        <Label id="LblTimeTransfTxt" text="{i18n>LblTimeTransf}" class="TblHdr" width="1140px" textAlign="Center" >
+                        
+                        </Label>
+                    </Toolbar>
+                    <Label id="LblITimeTransfEndIdt" text="" class="" width="25px"></Label>
+                </FlexBox>
+
+
+
+                     <FlexBox id="flxTimeTransfTable">
+                    
+                        
+                        <Label id="lblTimeTransfIniIdnt" width="25px"/>
+                        
+                        <Table id="tblTimeTransf" width="1140px" items="{/ValTblTimeTransf}" backgroundDesign="Solid" 
+                               fixedLayout="false"  growing="true" growingThreshold="100" alternateRowColors="false" class="columnStyle1" showNoData="false">
+    <!-- Training History Columns -->  
+                            <columns>
+                                <Column id="TimeTransfFrom" width="140px" >
+                                    <header>
+                                        <Label  design="Bold" text="From" id="TimeTransColfFrom" class="underlineHdr"/>
+                                    </header>
+                                </Column>
+                                <Column id="TimeTransfTo" width="120px" hAlign="Begin">
+                                    <header>
+                                        <Label class="underlineHdr" design="Bold" text="To" id="TimeTransfColTo" />
+                                    </header>
+                                </Column>
+                                <Column id="TimeTransfTime" width="100px" hAlign="End">
+                                    <header>
+                                        <Label class="underlineHdr" design="Bold" text="Time" id="TimeTransfColTime"/>
+                                    </header>
+                                </Column>
+                                <Column id="TimeTransfTimeGap" width="60px" hAlign="End">
+                                    <header>
+                                        <Label class="underlineHdr" design="Bold" text="" id="TimeTransfColTimeGap"/>
+                                    </header>
+                                </Column>
+                                <Column id="TimeTransfBal" width="270px">
+                                    <header>
+                                        <Label class="underlineHdr" design="Bold" text="Balance Revision" id="TimeTransfColBal"/>
+                                    </header>
+                                </Column>
+
+                                <Column id="TimeTransHours" width="145px" hAlign="End">
+                                    <header>
+                                        <Label class="underlineHdr" design="Bold" text="" id="TimeTransfColHours"/>
+                                    </header>
+                                </Column>
+                                 <Column id="TimeTransHoursGap" width="195px">
+                                    <header>
+                                        <Label class="underlineHdr" design="Bold" text="" id="TimeTransfColHoursGap"/>
+                                    </header>
+                                </Column>
+                               
+                            </columns>
+    <!-- Training History Columns -->
+
+    <!-- Training History Items -->  
+                            <items>
+                                <ColumnListItem id="TimeTransfItm" class="TH_Colfont" >
+                                    <cells>
+                                        <Text id="ClTimeTransfFrom" text="{Begda}" renderWhitespace="true" class="Orcell" textAlign="Begin"/> 
+                                    </cells>
+                                    <cells>
+                                        <Text id="ClTimeTransfTo" text="{Endda}" renderWhitespace="true" textAlign="End"/> 
+                                    </cells>
+                                    <cells>
+                                        <Text id="ClTimeTransfTime" text="{Ztart}" renderWhitespace="true" class="Orcell" textAlign="Begin" /> 
+                                    </cells>
+                                    <cells>
+                                        <Text id="ClTimeTransfTimeGap" text="" renderWhitespace="true" class="Orcell" textAlign="Begin" /> 
+                                    </cells>
+                                    <cells>
+                                        <Text id="ClTimeTransfBal" text="{Ztext}" renderWhitespace="true" class="Orcell" textAlign="End"/> 
+                                    </cells>
+
+                                    <cells>
+                                        <Text id="ClTimeTransfHours" text="{Anzhl}" renderWhitespace="true" class="Orcell" textAlign="End"/> 
+                                    </cells>
+                                    
+                                </ColumnListItem>
+                            </items>
+    <!-- Training History Items -->  
+                            
+                        </Table>
+
+                        <Label id="lblTimeTransfvFinalIdnt" class="TH_TblIndFin" text="">
+                            <layoutData>
+						        <FlexItemData id="flxItmTimeTransfFinalIdnt" growFactor=".5" />
+					        </layoutData>
+                        </Label>
+<!-- Time Transfer Table -->  
+
+<!-- Abscence Quotas Table -->  
+                    </FlexBox>        
+                         <Label id="lblAbsQtsSpace" class="" text=""/>
+                    <!-- WS rule-->
+                <FlexBox id="FlxBxAbsQts">
+                    <Label id="LblAbsQtsInIdt" text="" class="" width="25px"></Label>
+                    <Toolbar id="PnlAbsQts"  class="panel3" width="1140px">
+                        
+                        <Label id="LblAbsQtsTxt" text="{i18n>LblAbsQts}" class="TblHdr" width="1140px" textAlign="Center" >
+                        
+                        </Label>
+                    </Toolbar>
+                    <Label id="LblIAbsQtsEndIdt" text="" class="" width="25px"></Label>
+                </FlexBox>
+
+
+
+                     <FlexBox id="flxAbsQtsTable">
+                    
+                        
+                        <Label id="lblAbsQtsIniIdnt" width="25px"/>
+                        
+                        <Table id="tblAbsQts" width="1140px" items="{/ValTblAbsQts}" backgroundDesign="Solid" 
+                               fixedLayout="false"  growing="true" growingThreshold="100" alternateRowColors="false" class="columnStyle1" showNoData="false">
+    <!-- Training History Columns -->  
+                            <columns>
+                                <Column id="AbsQtsfFrom" width="150px" >
+                                    <header>
+                                        <Label  design="Bold" text="From" id="AbsQtsColfFrom" class="underlineHdr"/>
+                                    </header>
+                                </Column>
+                                <Column id="AbsQtsTo" width="120px">
+                                    <header>
+                                        <Label class="underlineHdr" design="Bold" text="To" id="AbsQtsColTo" />
+                                    </header>
+                                </Column>
+
+                                <Column id="AbsQtsQuo" width="180px" hAlign="Center">
+                                    <header>
+                                        <Label class="underlineHdr" design="Bold" text="Quota" id="AbsQtsColBal" textAlign="Right"/>
+                                    </header>
+                                </Column>
+
+                                <Column id="AbsQtsQuoTxt" width="290px" hAlign="Begin">
+                                    <header>
+                                        <Label class="underlineHdr" design="Bold" text="Quota Text" id="AbsQtsColTime"/>
+                                    </header>
+                                </Column>
+                                <Column id="AbsQtsRem" width="180px" hAlign="End">
+                                    <header>
+                                        <Label class="underlineHdr" design="Bold" text="Remaining" id="AbsQtsColRem" textAlign="End"/>
+                                    </header>
+                                </Column>
+                                 <Column id="AbsQtsUnits" width="130px" hAlign="End">
+                                    <header>
+                                        <Label class="underlineHdr" design="Bold" text="Units" id="AbsQtsColUnits"/>
+                                    </header>
+                                </Column>
+                                <Column id="AbsQtsUnitsGap" width="80px">
+                                    <header>
+                                        <Label class="underlineHdr" design="Bold" text="" id="AbsQtsColUnitsGap"/>
+                                    </header>
+                                </Column>
+                                 
+                               
+                            </columns>
+    <!-- Training History Columns -->
+
+    <!-- Training History Items -->  
+                            <items>
+                                <ColumnListItem id="AbsQtsItm" class="TH_Colfont" >
+                                    <cells>
+                                        <Text id="ClAbsQtsFrom" text="{Begda}" renderWhitespace="true" class="Orcell" textAlign="Begin"/> 
+                                    </cells>
+                                    <cells>
+                                        <Text id="ClAbsQtsfTo" text="{Endda}" renderWhitespace="true" textAlign="End"/> 
+                                    </cells>
+                                    <cells>
+                                        <Text id="ClAbsQtsQuo" text="{Ktart}" renderWhitespace="true" class="Orcell" textAlign="End" /> 
+                                    </cells>
+                                    <cells>
+                                        <Text id="ClAbsQtsQuoTxt" text="{Qtext}" renderWhitespace="true" class="Orcell" textAlign="End"/> 
+                                    </cells>
+                                    <cells>
+                                        <Text id="ClAbsQtsRem" text="{Anzhl}" renderWhitespace="true" class="Orcell" textAlign="End"/> 
+                                    </cells>
+                                    <cells>
+                                        <Text id="ClAbsQtsUnits" text="{Etext}" renderWhitespace="true" class="Orcell" textAlign="End"/> 
+                                    </cells>
+                                    
+                                </ColumnListItem>
+                            </items>
+    <!-- Training History Items -->  
+                            
+                        </Table>
+
+                        <Label id="lblAbsQtsFinalIdnt" class="TH_TblIndFin" text="">
+                            <layoutData>
+						        <FlexItemData id="flxItmAbsQtsFinalIdnt" growFactor=".5" />
+					        </layoutData>
+                        </Label>
+     
+                    </FlexBox>
+<!-- Abscence Quotas Table -->  
+                    
+                    
+                    <!--</content>-->
+
+
+                 </ScrollContainer>
+                    </uxap:ObjectPageSubSection>
+                    
+                    </uxap:ObjectPageSection>
+                    
+                    </uxap:sections>
+                   
+                    </uxap:ObjectPageLayout>
+                    
+                   
+                </Page>
+ 
+                
+            </pages>
+            
+        </App>
+    </Shell>
+    
+</mvc:View>

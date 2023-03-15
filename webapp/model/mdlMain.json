@@ -1,0 +1,25 @@
+{
+    "ValDate":"",
+    "ValMonth":"",
+    "ValYear":"",
+    "ValPrMonth":"",
+    "ValPrYear":"",
+
+    "ValHdrPernr":"",
+    "ValHdrEmpGrp":"",
+    "ValHdrEmpSgrp":"",
+    "ValHdrName":"",
+    "ValHdrPerArea":"",
+    "ValHdrCompcode":"",
+    "ValHdrCostCntr":"",
+    "ValHdrWsRule":"",
+
+    "ValTblIndRes":"",
+    "ValTblTotOvrvw":"",
+    "ValTblTimeTransf":"",
+    "ValTblAbsQts":"",
+
+    "FlagMonthError":""
+    
+
+}
